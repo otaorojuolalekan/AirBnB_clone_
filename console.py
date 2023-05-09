@@ -6,7 +6,7 @@ AirBnB clone project.
 import cmd
 
 
-class HbnbConsole(cmd.Cmd):
+class HBNBCommand(cmd.Cmd):
     """This is the console class where
     all console functions are defined."""
     prompt = "(Hbnb) "
@@ -27,5 +27,5 @@ class HbnbConsole(cmd.Cmd):
         return True
 
 
-if __name__ == "__main__":
-    HbnbConsole().cmdloop()
+if __name__ == '__main__':
+    HBNBCommand().cmdloop()

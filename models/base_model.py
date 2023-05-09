@@ -10,11 +10,23 @@ class BaseModel():
     """
     BaseModel Class
     """
-    def __init__(self):
+    def __init__(self, *args, **kwargs):
         """Initialization for the Base class"""
-        self.id = str(uuid.uuid4())
-        self.created_at = datetime.now()
-        self.updated_at = datetime.now()
+        # Deserialization: updating init method to use **kwargs
+        if kwargs:
+            # remove the __class__ attribute
+            del kwargs["__class__"]
+            # run through kwargs items
+            for k, v in kwargs.items():
+                if k in ("created_at", "updated_at"):
+                    # convert datetime string to datetime object using strptime
+                    setattr(self, k, datetime.strptime(v, "%Y-%m-%dT%H:%M:%S.%f"))
+                else:
+                    setattr(self, k, v)
+        else:
+            self.id = str(uuid.uuid4())
+            self.created_at = datetime.now()
+            self.updated_at = datetime.now()
 
     def __str__(self):
         """string representation of Base class Instance"""
@@ -33,11 +45,14 @@ class BaseModel():
         # base_dicko['created_at'] = self.created_at.isoformat()
         # base_dicko['updated_at'] = self.updated_at.isoformat()
         # run through each item in base dicko, if date time
+
+        # later in life, try using getattr and setattr for this...
+
         for k, v in base_dicko.items():
             if isinstance(v, datetime):
                 base_dicko[k] = v.isoformat()
-            else:
-                base_dicko[k] = v
+            # else:
+            #     base_dicko[k] = v
         return base_dicko
 
 
