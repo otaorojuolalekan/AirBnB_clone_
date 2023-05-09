@@ -1,0 +1,8 @@
+test if isinstance of BaseModel
+test if isisntance has attr id
+test if isisntance has attr created_at
+test if isisntance has attr updated_at
+test if isisntance has attr name
+test if created at is in isoformat
+test if to_dict returns a dictionary
+test if magic string Output is formatted right
