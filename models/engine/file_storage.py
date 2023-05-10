@@ -26,7 +26,7 @@ class FileStorage(BaseModel):
     def all(self):
         """returns the dictionary objects"""
         return self.__objects
-    
+
     def new(self, obj):
         """
         sets in __objects the obj with
