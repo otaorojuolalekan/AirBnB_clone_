@@ -6,6 +6,7 @@ common attributes/methods for other classes.
 import uuid
 from datetime import datetime
 
+
 class BaseModel():
     """
     BaseModel Class
@@ -20,7 +21,8 @@ class BaseModel():
             for k, v in kwargs.items():
                 if k in ("created_at", "updated_at"):
                     # convert datetime string to datetime object using strptime
-                    setattr(self, k, datetime.strptime(v, "%Y-%m-%dT%H:%M:%S.%f"))
+                    setattr(self, k,
+                            datetime.strptime(v, "%Y-%m-%dT%H:%M:%S.%f"))
                 else:
                     setattr(self, k, v)
         else:
@@ -33,7 +35,7 @@ class BaseModel():
         clsname = self.__class__.__name__
         args = [clsname, self.id, self.__dict__]
         return "[{}] ({}) {}".format(*args)
-    
+
     def save(self):
         """This method updates the updated_at attribute"""
         self.updated_at = datetime.now()
@@ -56,7 +58,6 @@ class BaseModel():
         return base_dicko
 
 
-    
 # if __name__ == "__main__":
 #     bins1 = BaseModel()
 #     print(bins1)
