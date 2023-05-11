@@ -1,19 +1,19 @@
-test if isinstance of BaseModel
-test if isisntance has attr id
-test if isisntance has attr created_at
-test if isisntance has attr updated_at
-test if id is of type string
-test if isisntance has extra attributes 
-test if created at is in isoformat
-test if to_dict returns a dictionary
-test if magic string Output is formatted right
-test if string representation of instance is correct
-test if ids generated from uuid is unique
-test if type of id is string
-test if datecreated is isinstance of datetime
-test if dateupdated is instance of datetime
-datecreated must be initially equal to updated_at
-confirm that to_dict contains __class__
-to_dict returns type dictionary
-....testing to check which branch I'm on....
-
+    TEST CASES:
+    test if isinstance of BaseModel✅
+    test if isisntance has attr id✅
+    test if isisntance has attr created_at✅
+    test if isisntance has attr updated_at✅
+    test output of to_dict ✅
+    test if id is of type string✅
+    test if isisntance has extra added attributes✅
+    values of extra added attributes are appropriate✅
+    test if created at is in isoformat
+    test if to_dict returns a dictionary✅
+    test if print instance Output is formatted right✅
+    test if string representation of instance is correct
+    test if ids generated from uuid is unique ✅
+    test if type of id is string✅
+    test if datecreated is isinstance of datetime✅
+    test if dateupdated is instance of datetime✅
+    datecreated must be initially equal to updated_at✅
+    confirm that to_dict contains __class__✅
