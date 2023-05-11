@@ -8,7 +8,9 @@ for base model
     test if isisntance has attr created_at✅
     test if isisntance has attr updated_at✅
     test output of to_dict
+    test if id is of type string✅
     test if isisntance has extra added attributes✅
+    values of extra added attributes are appropriate✅
     test if created at is in isoformat
     test if to_dict returns a dictionary
     test if magic string Output is formatted right
@@ -21,11 +23,8 @@ for base model
     confirm that to_dict contains __class__
     to_dict returns type dictionary
 """
-import os.path
 import unittest
 from uuid import uuid4
-
-import models
 from models.base_model import BaseModel
 
 class TestBaseModel(unittest.TestCase):
@@ -47,7 +46,7 @@ class TestBaseModel(unittest.TestCase):
     
     def test_has_created_at_attr(self):
         """
-        test if isisntance has attr created_at
+        test if isinstance has attr created_at
         """
         chk = BaseModel()
         self.assertTrue(hasattr(chk, "created_at"))
@@ -61,16 +60,28 @@ class TestBaseModel(unittest.TestCase):
 
     def test_has_extra_attr(self):
         """
-        test if isisntance has attr name
+        test if isisntance has extra added attributes
+        And if the values of the attributes are appropriate
         """
         chk = BaseModel()
-        chk.name = "new_base_model"
-        self.assertTrue(hasattr(chk, "name"))
+        extattr = {"name": "my_first_ model", "my_number": 89}
+        for k, v in extattr.items():
+            setattr(chk, k, v)
+            self.assertTrue(hasattr(chk, k))
+            self.assertEqual(getattr(chk, k), v)
 
     def test_to_dict_returns_dict(self):
         chk = BaseModel()
         chk1 = chk.to_dict()
         self.assertTrue(isinstance(chk1, dict))
+
+    def test_id_type(self):
+        """
+        test if id is of type string
+        """
+        chk = BaseModel()
+        chk_id = chk.id
+        self.assertTrue(isinstance(chk_id, str))
         
 if __name__ == "__main__":
     unittest.main()
