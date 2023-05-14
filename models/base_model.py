@@ -4,7 +4,7 @@ This module contains and defines all
 common attributes/methods for other classes.
 """
 import uuid
-from datetime import datetime
+from datetime import datetime as dt
 
 
 class BaseModel():
@@ -22,13 +22,14 @@ class BaseModel():
                 if k in ("created_at", "updated_at"):
                     # convert datetime string to datetime object using strptime
                     setattr(self, k,
-                            datetime.strptime(v, "%Y-%m-%dT%H:%M:%S.%f"))
+                            dt.strptime(v, "%Y-%m-%dT%H:%M:%S.%f"))
                 else:
                     setattr(self, k, v)
         else:
+            from models import storage
             self.id = str(uuid.uuid4())
-            self.created_at = datetime.now()
-            self.updated_at = self.created_at
+            self.created_at = self.updated_at = dt.now()
+            storage.new(self)
 
     def __str__(self):
         """string representation of Base class Instance"""
@@ -38,7 +39,9 @@ class BaseModel():
 
     def save(self):
         """This method updates the updated_at attribute"""
-        self.updated_at = datetime.now()
+        from models import storage
+        self.updated_at = dt.now()
+        storage.save()
 
     def to_dict(self):
         """Dictionary representation of Base instance"""
@@ -51,7 +54,7 @@ class BaseModel():
         # later in life, try using getattr and setattr for this...
 
         for k, v in base_dicko.items():
-            if isinstance(v, datetime):
+            if isinstance(v, dt):
                 base_dicko[k] = v.isoformat()
             # else:
             #     base_dicko[k] = v
