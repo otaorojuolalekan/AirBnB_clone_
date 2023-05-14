@@ -32,7 +32,7 @@ class HBNBCommand(cmd.Cmd):
         """Calling this function quits the console
         Usage: Quit"""
         return True
-    
+
     def do_create(self, arg):
         """creates an instance of the class Basemodel and
         saves it as a Json file"""
@@ -45,6 +45,7 @@ class HBNBCommand(cmd.Cmd):
             print(new_inst.id)
         except NameError:
             print("** class doesnt exit **")
+
     def do_show(self, arg):
         """Prints the string representation of an instance
         based on the class name and id.
@@ -145,9 +146,6 @@ class HBNBCommand(cmd.Cmd):
             obj.save()
         else:
             print("** no instance found **")
-
-
-
 
 
 if __name__ == '__main__':

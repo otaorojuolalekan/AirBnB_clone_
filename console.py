@@ -18,7 +18,7 @@ import sys
 class HBNBCommand(cmd.Cmd):
     """ Class HBNB to read command """
     prompt = '(hbnb) '
-    __all_117 = 0
+    __chk_117 = 0
 
     def emptyline(self):
         """Pass if no command is given"""
@@ -29,7 +29,7 @@ class HBNBCommand(cmd.Cmd):
         if not sys.stdin.isatty():
             print()
         if '.' in line:
-            HBNBCommand.__all_117 = 1
+            HBNBCommand.__chk_117 = 1
             line = line.replace('.', ' ').replace('(', ' ').replace(')', ' ')
             cmd_argv = line.split()
             cmd_argv[0], cmd_argv[1] = cmd_argv[1], cmd_argv[0]
@@ -98,14 +98,14 @@ class HBNBCommand(cmd.Cmd):
         len_objs = len(all_objs)
         for key, value in all_objs.items():
             if not cmd_argv:
-                if HBNBCommand.__all_117 == 0:
+                if HBNBCommand.__chk_117 == 0:
                     print_list.append("\"" + str(value) + "\"")
                 else:
                     print_list.append(str(value))
             else:
                 check = key.split('.')
                 if cmd_argv[0] == check[0]:
-                    if HBNBCommand.__all_117 == 0:
+                    if HBNBCommand.__chk_117 == 0:
                         print_list.append("\"" + str(value) + "\"")
                     else:
                         print_list.append(str(value))
@@ -114,8 +114,8 @@ class HBNBCommand(cmd.Cmd):
         print("]")
 
     def do_destroy(self, arg):
-        "Deletes an instance based on it's ID and save the changes\n \
-        Usage: destroy <class name> <id>"
+        """Deletes an instance based on it's ID and save the changes\n \
+        Usage: destroy <class name> <id>"""
 
         cmd_argv = arg.split()
         if not cmd_argv:

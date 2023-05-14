@@ -8,6 +8,7 @@ import json
 import os
 from models.base_model import BaseModel
 
+
 class FileStorage:
     """
     file storage class
@@ -47,7 +48,7 @@ class FileStorage:
         """
         if os.path.exists(self.__file_path):
             with open(self.__file_path, encoding="utf-8") as jsfile:
-                json_dict  = json.load(jsfile)
+                json_dict = json.load(jsfile)
 
             for obj_key, base_obj in json_dict.items():
                 clsname, obj_id = obj_key.split('.')
@@ -55,6 +56,17 @@ class FileStorage:
 
     def classes(self):
         """Contains dictionary of classes to be used in Filestorage instance"""
+        from models.user import User
+        from models.amenity import Amenity
+        from models.city import City
+        from models.place import Place
+        from models.review import Review
         from models.base_model import BaseModel
-        classdict = {"BaseModel": BaseModel}
+        classdict = {"BaseModel": BaseModel,
+                     "User": User,
+                     "Amenity": Amenity,
+                     "City": City,
+                     "Place": Place,
+                     "Review": Review
+                     }
         return classdict
