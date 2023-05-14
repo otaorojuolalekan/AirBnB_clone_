@@ -6,9 +6,7 @@ or deserializing using Json
 """
 import json
 import os
-
 from models.base_model import BaseModel
-
 
 class FileStorage:
     """
@@ -26,7 +24,7 @@ class FileStorage:
         sets in __objects the obj with
         key <obj cls name>.id
         """
-        args = [self.__class__.__name__, obj.id]
+        args = [obj.__class__.__name__, obj.id]
         key = "{}.{}".format(*args)
         self.__objects[key] = obj
 
@@ -54,3 +52,9 @@ class FileStorage:
             for obj_key, base_obj in json_dict.items():
                 clsname, obj_id = obj_key.split('.')
                 self.new(eval(base_obj["__class__"])(**base_obj))
+
+    def classes(self):
+        """Contains dictionary of classes to be used in Filestorage instance"""
+        from models.base_model import BaseModel
+        classdict = {"BaseModel": BaseModel}
+        return classdict
