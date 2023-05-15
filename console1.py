@@ -8,10 +8,11 @@ import re
 from models.base_model import BaseModel
 from models.__init__ import storage
 
-# create global variables for use in and outside 
+# create global variables for use in and outside
 # all classes and functions
 
 classes = ["BaseModel"]
+
 
 class HBNBCommand(cmd.Cmd):
     """This is the console class where
@@ -35,7 +36,7 @@ class HBNBCommand(cmd.Cmd):
     def do_quit(self, line):
         """Quit command to exit the program"""
         return True
-    
+
     def args_parse(self, args):
         """parse args to use and check if present and in classes"""
         if not args:
@@ -54,8 +55,6 @@ class HBNBCommand(cmd.Cmd):
             new_ins = HBNBCommand.pargs[0]()
             print(new_ins.id)
             storage.save()
-
-        
 
 
 if __name__ == '__main__':

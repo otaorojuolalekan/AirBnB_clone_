@@ -25,7 +25,7 @@ class TestBaseModel(unittest.TestCase):
         """
         checker = BaseModel()
         self.assertTrue(hasattr(checker, "id"))
-    
+
     def test_has_created_at_attr(self):
         """
         test if isinstance has attr created_at
@@ -75,7 +75,7 @@ class TestBaseModel(unittest.TestCase):
         expRes = print("[{}] ({}) {}".format(*args))
         # self.assertTrue(isinstance(print(chk), str))
         self.assertEqual(print(chk), expRes)
-        
+
     def test_contains_class_(self):
         """
         confirm that to_dict contains __class__
@@ -95,7 +95,7 @@ class TestBaseModel(unittest.TestCase):
         """test created at type is datetime"""
         chk = BaseModel()
         self.assertIsInstance(chk.created_at, datetime)
-    
+
     def test_updated_at_type(self):
         """test updated at type is datetime"""
         chk = BaseModel()
@@ -115,7 +115,7 @@ class TestBaseModel(unittest.TestCase):
         """
         chk = BaseModel()
         chk.id = 123456
-        chk.name= "My_Model"
+        chk.name = "My_Model"
         dtnow = datetime.now()
         chk.created_at = chk.updated_at = dtnow
         chk_dictresult = {
@@ -127,6 +127,6 @@ class TestBaseModel(unittest.TestCase):
         }
         self.assertDictEqual(chk_dictresult, chk.to_dict())
 
-        
+
 if __name__ == "__main__":
     unittest.main()
