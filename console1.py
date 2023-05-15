@@ -55,6 +55,7 @@ class HBNBCommand(cmd.Cmd):
             new_ins = HBNBCommand.pargs[0]()
             print(new_ins.id)
             storage.save()
+            # comment to try to fix 
 
 
 if __name__ == '__main__':
